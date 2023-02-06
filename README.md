@@ -34,7 +34,7 @@ Runs the app in the development mode. Open http://127.0.0.1:5173/ to view it in 
 
 
 ## Weather list 
-You can view your different contacts, filter them by name. In addition, you can send message to contact.
+You can view your different location. In addition you can enter, add and delete locations.
 
  <img width="337"  alt="wather1" src="src/assets/img/2.png">
  
