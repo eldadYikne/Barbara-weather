@@ -7,12 +7,12 @@ An app I wrote with react, in which you can send message and images to your frie
 <img width="937" alt="weather" src="src/assets/img/1.png">
 
 ## Whatspop Description
-A small App that was built in a few days, I take that challenge to learn more of the use websocket like I want. 
+A small App that was built in a few days, I take that challenge to learn more of the use API,Tailwind and Vue like I want. 
 
 ### Technologies
 - Axios 
-- weather API 
-- tailwind Css -ספרייה נוחה למפתחי פרונט css 
+- Weather API 
+- Tailwind Css  
 - Vue.Js (Transtions, router-view, Suspense and more) 
 
 
