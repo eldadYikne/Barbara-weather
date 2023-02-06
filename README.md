@@ -1,4 +1,4 @@
-<h3 align="center">Barbara-weather 🌪</h3>
+<h2 align="center">Barbara-weather 🌪</h2>
 
 
 An app I wrote with react, in which you can send message and images to your friends and a groups, add them from application user list.
