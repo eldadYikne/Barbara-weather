@@ -1,4 +1,5 @@
-# Barbara-weather 🌪
+<h3 align="center">Barbara-weather 🌪</h3>
+
 
 An app I wrote with react, in which you can send message and images to your friends and a groups, add them from application user list.
 [Here is my project link](https://eldadyikne.github.io/Barbara-weather/ "Barbara-weather link")
