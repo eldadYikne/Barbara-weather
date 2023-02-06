@@ -41,8 +41,8 @@ You can view your different location. In addition you can enter, add and delete 
  ## Weather CRUDL
 You can CRUD your weather location any time.
 
- <img width="937" alt="C" src="src/assets/img/5.png">
+ <img width="937" alt="C" src="src/assets/img/4.png">
 
  ## Some mobile!
 Just a taste of the mobile experience. I used different conditional rendering, and the "mobile first" approach. 
-<img width="937" alt="Mobile" src="src/assets/img/pop1.png">
+<img width="937" alt="Mobile" src="src/assets/img/5.png">
