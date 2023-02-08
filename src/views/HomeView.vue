@@ -73,7 +73,6 @@ const queryTimeout = ref(null);
 const errorMsg = ref(null);
 const previewCity = (searchResult) => {
   const [city, state] = searchResult.place_name.split(",");
-  console.log("searchResult", searchResult);
   router.push({
     name: "cityView",
     params: { state: state.replaceAll(" ", ""), city },
@@ -85,7 +84,6 @@ const previewCity = (searchResult) => {
   });
 };
 const getSearchResults = () => {
-  console.log(searchQuery.value);
   clearTimeout(queryTimeout.value);
   queryTimeout.value = setTimeout(async () => {
     if (searchQuery.value !== "") {

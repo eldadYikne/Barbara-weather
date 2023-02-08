@@ -1,12 +1,12 @@
 <template>
-
   <div
-  v-if="weatherData"
+    v-if="weatherData && generatedImage"
     class="
       flex flex-col flex-1
       items-center
       scrollbar-thumb-slate-600 scrollbar-track-slate-900
-    ">
+    "
+  >
     <!-- Banner -->
     <div
       v-if="route.query.preview"
@@ -19,7 +19,15 @@
     </div>
 
     <!-- weather -->
-    <div class="flex flex-col items-center text-white p-12">
+    <div
+      class="flex flex-col items-center text-white p-12 w-full"
+      v-bind:style="{
+        'background-image': 'url(' + generatedImage + ')',
+        'background-repeat': 'no-repeat',
+        'background-position': '50%',
+        'background-size': 'cover',
+      }"
+    >
       <h1 class="text-4xl mb-2">{{ route.params.city }}</h1>
       <p class="text-sm mb-12">
         {{
@@ -152,24 +160,41 @@
       <p>Remove City</p>
     </div>
   </div>
-  <div class="flex flex-row justify-center text-xl mt-20 items-center gap-2 text-cyan-50" v-else>
-    <h1 class=" flex justify-center" >Sorry request failed </h1>
-    <i class="fa-solid fa-face-sad-tear"></i>
+  <div
+    class="
+      flex flex-row
+      justify-center
+      text-xl
+      mt-20
+      items-center
+      gap-2
+      text-cyan-50
+    "
+    v-else
+  >
+    <!-- <h1 class="flex justify-center">Sorry request failed</h1>
+    <i class="fa-solid fa-face-sad-tear"></i> -->
+    <city-view-skelton />
   </div>
 </template>
 
 <script setup>
 import axios from "axios";
 import { useRoute, useRouter } from "vue-router";
+import CityViewSkelton from "../components/CityViewSkelton.vue";
+import { ref } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
 const API_KEY = "de0be2caddf3da48fef3615eb7db33ef";
 const route = useRoute();
 const router = useRouter();
-
+const generatedImage = ref(null);
 const getWeatherData = async () => {
   try {
     const weatherData = await axios.get(
       `https://api.openweathermap.org/data/2.5/onecall?lat=${route.query.lat}&lon=${route.query.lng}&exclude={part}&appid=7efa332cf48aeb9d2d391a51027f1a71&units=imperial`
-    )
+    );
     // cal current date & time
     const localOffset = new Date().getTimezoneOffset() * 60000;
     const utc = weatherData.data.current.dt * 1000 + localOffset;
@@ -186,16 +211,43 @@ const getWeatherData = async () => {
     console.log("err", err);
   }
 };
+
 const weatherData = await getWeatherData();
 const removeCity = () => {
   const cities = JSON.parse(localStorage.getItem("savedCities"));
   const newCities = cities.filter((city) => city.id !== route.query.id);
 
-  localStorage.setItem('savedCities',JSON.stringify(newCities));
+  localStorage.setItem("savedCities", JSON.stringify(newCities));
   router.push({
     name: "home",
   });
 };
+const getImgOpenAi = async () => {
+  axios
+    .post(
+      "https://api.openai.com/v1/images/generations",
+      {
+        prompt: `${route.params.city} ${weatherData.current.weather[0].description}`,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
+        },
+      }
+    )
+    .then((response) => {
+      generatedImage.value = response.data.data[0].url;
+      let cityToStore = {
+        city: route.params.city,
+        imageUrl: response.data.data[0].url,
+      };
+      store.dispatch("fetchImageUrl", cityToStore);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+await getImgOpenAi();
 </script>
 
 <style >
