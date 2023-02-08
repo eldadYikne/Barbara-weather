@@ -12,6 +12,7 @@ A small App that was built in a few days, I take that challenge to learn more of
 ### Technologies
 - Axios 
 - Weather API 
+- OpenAI images
 - Tailwind Css  
 - Vue.Js (Transtions, router-view, Suspense and more) 
 
