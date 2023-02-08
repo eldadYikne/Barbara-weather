@@ -1,7 +1,8 @@
 <h1 align="center">Barbara-weather 🌪</h1>
 
 
-An app I wrote with react, in which you can send message and images to your friends and a groups, add them from application user list.
+An app I wrote with Vue.js, in which you can check the weather in your location' you can add, delete cities and save them. 
+I used in OpenAI to show  picture according to the weather and the city. 
 [Here is my project link](https://eldadyikne.github.io/Barbara-weather/ "Barbara-weather link")
 
 <img width="937" alt="weather" src="src/assets/img/1.png">
