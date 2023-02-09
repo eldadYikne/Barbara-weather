@@ -223,7 +223,7 @@ const removeCity = () => {
   });
 };
 const getImgOpenAi = async () => {
-  axios
+ await axios
     .post(
       "https://api.openai.com/v1/images/generations",
       {
@@ -247,7 +247,7 @@ const getImgOpenAi = async () => {
       console.log(err);
     });
 };
-await getImgOpenAi();
+ getImgOpenAi();
 </script>
 
 <style >
